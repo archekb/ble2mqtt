@@ -143,10 +143,10 @@ async def restart_bluetooth(adapter: str):
         return
     async with BLUETOOTH_RESTARTING:
         _LOGGER.warning('Restarting bluetoothd...')
-        proc = await aio.create_subprocess_exec(
-            'hciconfig', adapter, 'down',
-        )
-        await proc.wait()
+        # proc = await aio.create_subprocess_exec(
+        #     'hciconfig', adapter, 'down',
+        # )
+        # await proc.wait()
 
         if os.path.exists('/etc/init.d/bluetoothd'):
             proc = await aio.create_subprocess_exec(
@@ -164,11 +164,11 @@ async def restart_bluetooth(adapter: str):
             _LOGGER.error('init.d bluetoothd script not found')
 
         await aio.sleep(3)
-        proc = await aio.create_subprocess_exec(
-            'hciconfig', adapter, 'up',
-        )
-        await proc.wait()
-        await aio.sleep(5)
+        # proc = await aio.create_subprocess_exec(
+        #     'hciconfig', adapter, 'up',
+        # )
+        # await proc.wait()
+        # await aio.sleep(5)
         _LOGGER.warning('Restarting bluetoothd finished')
 
 
